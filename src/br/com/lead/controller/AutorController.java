@@ -15,6 +15,15 @@ import br.com.lead.util.JPAUtil;
 @Controller
 public class AutorController {
 
+	@RequestMapping(value = "/consultar-autor-json", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Autor consultarAutorJson(@RequestParam Integer id) {
+		EntityManager em = JPAUtil.getEntityManager();
+		
+		return em.find(Autor.class, id);
+
+	}
+	
 	@RequestMapping(value = "/consultar-autor", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView consultarAutor(@RequestParam Integer id) {
